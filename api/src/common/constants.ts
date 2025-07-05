@@ -1,0 +1,5 @@
+export const USUARIO_REPOSITORY = 'USUARIO_REPOSITORY'
+
+export const AUTH_SERVICE = 'AUTH_SERVICE'
+
+export const APP_GUARD = 'APP_GUARD'
