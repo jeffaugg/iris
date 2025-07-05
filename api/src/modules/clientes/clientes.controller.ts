@@ -1,28 +1,33 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
-import { ClientesService } from './clientes.service'
-import { CreateClienteDto } from './dto/create-cliente.dto'
+import { Body, Controller, Get, Inject, Param, Post, Query } from '@nestjs/common'
+import { CLIENTE_SERVICE } from 'src/common/constants'
+import { PaginacaoDto } from 'src/common/dto/pagination.dto'
+import { IsPaginated } from 'src/shared/decorators/Ispaginated'
+import { isPublic } from 'src/shared/decorators/isPublic'
+import { Zod } from 'src/shared/decorators/zod'
+import { CreateClienteDto, CreateClienteSchema } from './dto/create-cliente.dto'
+import { IClienteService } from './interface/clientes.service.interface'
 
 @Controller('clientes')
 export class ClientesController {
-  constructor (private readonly clientesService: ClientesService) {}
+  constructor (
+    @Inject(CLIENTE_SERVICE)
+    private readonly clientesService: IClienteService) {}
 
   @Post()
-  create (@Body() createClienteDto: CreateClienteDto) {
-    return this.clientesService.create(createClienteDto)
+  @isPublic()
+  @Zod(CreateClienteSchema)
+  async create (@Body() createClienteDto: CreateClienteDto) {
+    return await this.clientesService.create(createClienteDto)
   }
 
   @Get()
-  findAll () {
-    return this.clientesService.findAll()
+  @IsPaginated()
+  async findAll (@Query() paginacaoDto: PaginacaoDto) {
+    return await this.clientesService.findAll(paginacaoDto)
   }
 
   @Get(':id')
-  findOne (@Param('id') id: string) {
-    return this.clientesService.findOne(+id)
-  }
-
-  @Delete(':id')
-  remove (@Param('id') id: string) {
-    return this.clientesService.remove(+id)
+  async findOne (@Param('id') id: string) {
+    return await this.clientesService.findOne(id)
   }
 }
