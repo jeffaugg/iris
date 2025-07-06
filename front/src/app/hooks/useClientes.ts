@@ -6,6 +6,8 @@ interface IUseClientesParams {
 	cpf?: string;
 	nome?: string;
 	order?: 'asc' | 'desc';
+	page?: number;
+	limit?: number;
 }
 
 export function useClientes(params?: IUseClientesParams) {

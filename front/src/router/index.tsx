@@ -13,17 +13,18 @@ export function Router() {
 		<BrowserRouter>
 			<Routes>
 				<Route element={<AuthGuard isPrivate={false} />}>
+					<Route path="/" element={<FormPage />} />
 					<Route element={<AuthLayout />}>
 						<Route path="/login" element={<Login />} />
 					</Route>
 				</Route>
 
 				<Route element={<AuthGuard isPrivate />}>
-					<Route path="/" element={<FormPage />} />
+					<Route element={<AuthLayout />} />
+					<Route path="/dashboard" element={<Dashboard />} />
 				</Route>
 
 				<Route path="/conflict" element={<ConflictPage />} />
-				<Route path="/dashboard" element={<Dashboard />} />
 			</Routes>
 		</BrowserRouter>
 	);

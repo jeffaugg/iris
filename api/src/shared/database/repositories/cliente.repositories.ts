@@ -15,7 +15,7 @@ export class ClienteRepository implements IClienteRepository {
     })
   }
 
-  async findAll ({ skip, limit, cpf, order }: QueryClienteDto) {
+  async findAll ({ limit, page, cpf, order }: QueryClienteDto) {
     const where = {
       deletedAt: null,
       cpf: cpf ?? undefined
@@ -26,7 +26,7 @@ export class ClienteRepository implements IClienteRepository {
       this.prismaService.cliente.findMany({
         where,
         orderBy: { createdAt: order },
-        skip,
+        skip: page ? (page - 1) * limit : 0,
         take: limit,
         include: {
           cor: true

@@ -13,8 +13,12 @@ export function AuthGuard({ isPrivate }: IAuthGuardProps) {
 		return <Navigate to="/login" replace />;
 	}
 
+	if (signedIn && !isPrivate && window.location.pathname === '/') {
+		return <Outlet />;
+	}
+
 	if (signedIn && !isPrivate) {
-		return <Navigate to="/" replace />;
+		return <Navigate to="/dashboard" replace />;
 	}
 
 	return <Outlet />;

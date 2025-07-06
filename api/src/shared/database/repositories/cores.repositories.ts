@@ -15,17 +15,15 @@ export class CoresRepository implements ICoresRepository {
     })
   }
 
-  async findAll ({ skip, limit }: PaginacaoDto) {
+  async findAll ({ page, limit }: PaginacaoDto) {
     const where = { deletedAt: null }
-
-    console.log('Finding all cores with pagination:', { skip, limit })
 
     const [total, items] = await this.prismaService.$transaction([
       this.prismaService.cores.count({ where }),
       this.prismaService.cores.findMany({
         where,
         orderBy: { createdAt: 'desc' },
-        skip,
+        skip: page ? (page - 1) * limit : 0,
         take: limit
       })
     ])

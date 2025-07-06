@@ -16,7 +16,6 @@ export class CoresService implements ICoresService {
   }
 
   async findAll (options: PaginacaoDto) {
-    console.log('Finding all cores with options:', options)
     return await this.coresRepository.findAll(options)
   }
 

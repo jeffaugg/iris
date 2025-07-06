@@ -5,6 +5,8 @@ export interface IListClienteQueryParams {
 	nome?: string;
 	cpf?: string;
 	order?: 'asc' | 'desc';
+	limit?: number;
+	page?: number;
 }
 
 interface IPaginationMeta {
