@@ -4,6 +4,7 @@ import { AuthGuard } from './modules/auth/auth.guard'
 import { AuthModule } from './modules/auth/auth.module'
 import { ClientesModule } from './modules/clientes/clientes.module'
 import { CoresModule } from './modules/cores/cores.module'
+import { UsuariosModule } from './modules/usuarios/usuarios.module'
 import { DatabaseModule } from './shared/database/database.module'
 
 @Module({
@@ -11,7 +12,8 @@ import { DatabaseModule } from './shared/database/database.module'
     DatabaseModule,
     AuthModule,
     ClientesModule,
-    CoresModule
+    CoresModule,
+    UsuariosModule
   ],
   controllers: [],
   providers: [

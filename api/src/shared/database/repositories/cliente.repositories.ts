@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
-import { type PaginacaoDto } from 'src/common/dto/pagination.dto'
 import { type CreateClienteDto } from 'src/modules/clientes/dto/create-cliente.dto'
+import { type QueryClienteDto } from 'src/modules/clientes/dto/queryCliente.dto'
 import { PrismaService } from '../prisma.service'
 import { type IClienteRepository } from './interface/cliente.repository.interface'
 
@@ -15,20 +15,32 @@ export class ClienteRepository implements IClienteRepository {
     })
   }
 
-  async findAll ({ skip, limit }: PaginacaoDto) {
-    const where = { deletedAt: null }
+  async findAll ({ skip, limit, cpf, order }: QueryClienteDto) {
+    const where = {
+      deletedAt: null,
+      cpf: cpf ?? undefined
+    }
 
     const [total, items] = await this.prismaService.$transaction([
       this.prismaService.cliente.count({ where }),
       this.prismaService.cliente.findMany({
         where,
-        orderBy: { createdAt: 'desc' },
+        orderBy: { createdAt: order },
         skip,
-        take: limit
+        take: limit,
+        include: {
+          cor: true
+        }
       })
     ])
 
-    return { items, total }
+    const transformedItems = items.map(item => ({
+      ...item,
+      cor: item.cor?.codigo ?? null,
+      corId: undefined
+    }))
+
+    return { items: transformedItems, total }
   }
 
   async findById (id: string) {

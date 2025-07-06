@@ -14,4 +14,13 @@ export class UsuarioRepository implements IUsuarioRepository {
       }
     })
   }
+
+  async findById (id: string) {
+    return await this.prismaService.usuario.findUnique({
+      where: {
+        id,
+        deletedAt: null
+      }
+    })
+  }
 }

@@ -1,9 +1,18 @@
 import { type Cliente } from '@prisma/client'
-import { type PaginacaoDto } from 'src/common/dto/pagination.dto'
 import { type CreateClienteDto } from 'src/modules/clientes/dto/create-cliente.dto'
+import { type QueryClienteDto } from 'src/modules/clientes/dto/queryCliente.dto'
+
+export type ClienteWithColor = Omit<Cliente, 'corId'> & {
+  cor: string | null
+}
+
+export interface IPaginatedClientes {
+  items: ClienteWithColor[]
+  total: number
+}
 
 export interface IClienteRepository {
-  create: (data: CreateClienteDto) => Promise<Cliente>
-  findAll: (pagination: PaginacaoDto) => Promise<{ items: Cliente[], total: number }>
+  create: (createClienteDto: CreateClienteDto) => Promise<Cliente>
+  findAll: (options: QueryClienteDto) => Promise<IPaginatedClientes>
   findById: (id: string) => Promise<Cliente | null>
 }

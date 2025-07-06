@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Inject, Param, Post, Query } from '@nestjs/common'
 import { CLIENTE_SERVICE } from 'src/common/constants'
-import { PaginacaoDto } from 'src/common/dto/pagination.dto'
 import { IsPaginated } from 'src/shared/decorators/Ispaginated'
 import { isPublic } from 'src/shared/decorators/isPublic'
 import { Zod } from 'src/shared/decorators/zod'
 import { CreateClienteDto, CreateClienteSchema } from './dto/create-cliente.dto'
+import { QueryClienteDto } from './dto/queryCliente.dto'
 import { IClienteService } from './interface/clientes.service.interface'
 
 @Controller('clientes')
@@ -22,7 +22,7 @@ export class ClientesController {
 
   @Get()
   @IsPaginated()
-  async findAll (@Query() paginacaoDto: PaginacaoDto) {
+  async findAll (@Query() paginacaoDto: QueryClienteDto) {
     return await this.clientesService.findAll(paginacaoDto)
   }
 
