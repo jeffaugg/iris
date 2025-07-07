@@ -4,6 +4,10 @@ Uma aplicação **full-stack** para cadastro e gerenciamento de clientes com cor
 
 ---
 
+<p align="center">
+  <img src="https://i.gifer.com/sbg.gif" alt="Iris">
+</p>
+
 ## 🚀 Visão Geral
 
 Iris é uma plataforma que permite:
@@ -85,7 +89,7 @@ Iris é uma plataforma que permite:
 
 1. **Clone o repositório**  
      ```bash
-     git clone <URL_DO_REPO>
+     git clone https://github.com/jeffaugg/iris
      cd iris
      ```
 
