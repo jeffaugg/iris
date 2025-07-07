@@ -17,13 +17,16 @@ async function main () {
     skipDuplicates: true
   })
 
-  await prisma.usuario.create(
+  await prisma.usuario.createMany(
     {
-      data: {
-        nome: 'Joe Doe',
-        email: 'joe.doe@example.com',
-        senha: await hash('senha_secreta', 10)
-      }
+      data: [
+        {
+          nome: 'Joe Doe',
+          email: 'joe.doe@example.com',
+          senha: await hash('senha_secreta', 10)
+        }
+      ],
+      skipDuplicates: true
     }
   )
 }

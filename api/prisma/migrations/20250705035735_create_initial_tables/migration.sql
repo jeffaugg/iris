@@ -48,3 +48,13 @@ CREATE UNIQUE INDEX "clientes_email_key" ON "clientes"("email");
 
 -- AddForeignKey
 ALTER TABLE "clientes" ADD CONSTRAINT "clientes_corId_fkey" FOREIGN KEY ("corId") REFERENCES "cores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- Seed Colors
+INSERT INTO "cores" ("id", "codigo", "created_at", "updated_at")
+VALUES
+    (gen_random_uuid(), '#FF5733', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(), '#33FF57', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(), '#3357FF', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(), '#F0F0F0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(), '#000000', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(), '#FFFFFF', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

@@ -7,7 +7,13 @@ import { ZodInterceptor } from './common/interceptors/zod.interceptor'
 async function bootstrap () {
   const app = await NestFactory.create(AppModule)
 
-  app.enableCors()
+  app.enableCors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+  })
+
   app.useGlobalInterceptors(new PaginateInterceptor(app.get(Reflector)))
   app.useGlobalInterceptors(new ZodInterceptor(app.get(Reflector)))
   app.useGlobalPipes(

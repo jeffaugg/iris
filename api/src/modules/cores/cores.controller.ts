@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query } from '
 import { CORES_SERVICE } from 'src/common/constants'
 import { PaginacaoDto } from 'src/common/dto/pagination.dto'
 import { IsPaginated } from 'src/shared/decorators/Ispaginated'
+import { isPublic } from 'src/shared/decorators/isPublic'
 import { Zod } from 'src/shared/decorators/zod'
 import { CreateCoresDto, CreateCoresSchema } from './dto/create-core.dto'
 import { ICoresService } from './interface/cores.service.interface'
@@ -20,6 +21,7 @@ export class CoresController {
 
   @Get()
   @IsPaginated()
+  @isPublic()
   async findAll (@Query() paginacaoDto: PaginacaoDto) {
     return await this.coresService.findAll(paginacaoDto)
   }

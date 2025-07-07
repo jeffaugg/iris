@@ -10,6 +10,15 @@ export const httpClient = axios.create({
 httpClient.interceptors.request.use(async (config) => {
 	const acessToken = localStorage.getItem(localStorageKeys.ACCESSTOKEN);
 
+	console.log('Requesição para API:', {
+		baseURL: httpClient.defaults.baseURL,
+		envBaseURL: import.meta.env.VITE_API_URL,
+		url: config.url,
+		method: config.method,
+		data: config.data,
+		headers: config.headers,
+	});
+
 	if (acessToken) {
 		// eslint-disable-next-line no-param-reassign
 		config.headers.Authorization = `Bearer ${acessToken}`;
