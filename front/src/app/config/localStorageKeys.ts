@@ -1,3 +1,3 @@
 export const localStorageKeys = {
-	ACCESSTOKEN: 'fincheck:accessToken',
+	ACCESSTOKEN: 'iris:accessToken',
 };

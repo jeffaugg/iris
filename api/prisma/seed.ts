@@ -6,13 +6,12 @@ const prisma = new PrismaClient()
 async function main () {
   await prisma.cores.createMany({
     data: [
-      { codigo: '#FF0000' },
-      { codigo: '#FF7F00' },
-      { codigo: '#FFFF00' },
-      { codigo: '#00FF00' },
-      { codigo: '#0000FF' },
-      { codigo: '#4B0082' },
-      { codigo: '#8B00FF' }
+      { codigo: '#FF5733' },
+      { codigo: '#33FF57' },
+      { codigo: '#3357FF' },
+      { codigo: '#F0F0F0' },
+      { codigo: '#000000' },
+      { codigo: '#FFFFFF' }
     ],
     skipDuplicates: true
   })
