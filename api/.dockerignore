@@ -1,0 +1,30 @@
+# artefatos de build
+dist
+node_modules
+
+# arquivos de configuração local
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose*.yml
+
+# IDE / editor
+.vscode/
+.idea/
+
+# cobertura de testes
+coverage
+
+# sistema de arquivos (macOS)
+.DS_Store
+
+!tsconfig.json
+!*.json
