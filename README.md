@@ -140,6 +140,26 @@ Após executar o projeto, use as credenciais padrão para acessar como administr
 
 ---
 
+## 🧩 Injeção e Inversão de Dependência
+
+O projeto implementa o princípio de Inversão de Dependência (SOLID) através do sistema de injeção de dependências do NestJS:
+
+![Diagrama de Injeção de Dependência](image.png)
+
+Como mostrado no diagrama:
+
+- **Controllers** consomem classes abstratas (interfaces/abstract classes)
+- **Classes Concretas** implementam as interfaces
+- O sistema de DI do NestJS conecta automaticamente as implementações concretas
+
+Esta abordagem proporciona:
+
+- **Baixo acoplamento**: Componentes dependem de abstrações, não de implementações
+- **Testabilidade**: Facilidade para mockar dependências em testes unitários
+- **Manutenibilidade**: Alterações em implementações não afetam os consumidores
+
+---
+
 ## 🎨 Decorators Personalizados
 
 O projeto utiliza decorators customizados para simplificar operações comuns:
